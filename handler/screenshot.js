@@ -1,9 +1,11 @@
-const browser = await puppeteer.launch();
+'use strict';
 
-const page = await browser.newPage();
-await page.goto('http://bachors.com');
+const puppeteer = require('puppeteer');
 
-console.log(await page.content());
-await page.screenshot({path: 'screenshot.png'});
-
-await browser.close();
+(async() => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('http://bachors.com');
+  await page.screenshot({path: 'example.png'});
+  await browser.close();
+})();
