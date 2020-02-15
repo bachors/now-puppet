@@ -1,11 +1,12 @@
-'use strict';
+import puppeteer from 'puppeteer';
 
-const puppeteer = require('puppeteer');
+// Replace puppeteer.launch with puppeteer.connect
+const browser = await puppeteer.connect({
+  browserWSEndpoint: 'wss://chrome.browserless.io'
+});
 
-(async() => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('http://bachors.com');
-  await page.screenshot({path: 'example.png'});
-  await browser.close();
-})();
+// The rest of your script remains the same
+const page = await browser.newPage();
+await page.goto('http://bachors.com/');
+await page.screenshot({ path: 'screenshot.png' });
+page.close();
